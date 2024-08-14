@@ -54,6 +54,7 @@ export const navVariants = {
     show: {
       y: 0,
       opacity: 1,
+      zIndex: 10,
       transition: {
         type: 'spring',
         duration: 1.25,
