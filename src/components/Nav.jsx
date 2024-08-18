@@ -40,7 +40,7 @@ const Nav = () => {
             <AnimatePresence>
                     {isOpen && (
                         <motion.div 
-                            className="absolute top-0 right-0 py-8 z-20 w-[300px] bg-gradient-to-r from-white via-lightgray to-white shadow-lg rounded-l-lg"
+                            className="absolute top-0 right-0 py-8 z-[100] w-[300px] bg-gradient-to-r from-white via-lightgray to-white shadow-lg rounded-l-lg"
                             variants={slideIn('right', 'tween', 0.2, 0.5)}
                             initial="hidden"
                             animate="show"
