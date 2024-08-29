@@ -19,10 +19,10 @@ export const navVariants = {
     },
   };
   
-  export const slideIn = (direction,distance, type, delay, duration) => ({
+  export const slideIn = (direction, type, delay, duration) => ({
     hidden: {
-      x: direction === 'left' ? '-100%' : direction === 'right' ? distance : 0,
-      y: direction === 'up' ? '100%' : direction === 'down' ? '100%' : 0,
+      x: direction === 'left' ? '-100%' : direction === 'right' ? '100%' : 0,
+      y: direction === 'up' ? '-100%' : direction === 'down' ? '100%' : 0,
     },
     show: {
       x: 0,
@@ -50,16 +50,19 @@ export const navVariants = {
     hidden: {
       y: 50,
       opacity: 0,
+      
     },
     show: {
       y: 0,
       opacity: 1,
+      zIndex: 10,
       transition: {
         type: 'spring',
         duration: 1.25,
         delay,
       },
     },
+   
   });
   
   export const textContainer = {

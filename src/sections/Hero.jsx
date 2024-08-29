@@ -53,7 +53,7 @@ const Hero = () => {
 
         {/* Statistics Animation */}
         <motion.div 
-          className="flex justify-start items-start flex-wrap w-full mt-20 gap-16" 
+          className="flex justify-start items-start flex-wrap w-full mt-16 gap-16" 
           variants={staggerContainer(0.3, 0.4)}
         >
           {statistics.map((stat, index) => (
