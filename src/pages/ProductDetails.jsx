@@ -69,7 +69,7 @@ const ProductDetails = () => {
             {product.price}
           </p>
           <div className="mt-4 flex items-center gap-2">
-            <img src="/star.svg" alt="rating" className="w-5 h-5" />
+            <img src={star} alt="rating" width={24} height={24} />
             <span className="text-lg font-montserrat text-slate-gray">
               {product.rating} / 5
             </span>
