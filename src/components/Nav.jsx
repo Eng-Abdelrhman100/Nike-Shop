@@ -50,9 +50,9 @@ const Nav = () => {
             </li>
           ))}
         </ul>
-        <p className="font-montserrat leading-3 text-xl max-lg:hidden">
+        {/* <p className="font-montserrat leading-3 text-xl max-lg:hidden">
           Signin / Signup
-        </p>
+        </p> */}
         <FaBars
           className={`cursor-pointer block lg:hidden ${
             isOpen ? "hidden" : "block"

@@ -2,6 +2,8 @@ import { useCart } from "react-use-cart";
 import Button from "../components/Button";
 import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
+import { Footer } from "../sections";
+import  CartIcon  from "../assets/images/cart.png";
 
 const Cart = () => {
   const { isEmpty, items, cartTotal, updateItemQuantity, removeItem } =
@@ -13,7 +15,7 @@ const Cart = () => {
         <Nav />
         <section className="padding max-container text-center flex flex-col items-center justify-center gap-6 min-h-screen">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
+            src={CartIcon}
             alt="empty cart"
             className="w-52 h-52 object-contain"
           />
@@ -26,6 +28,9 @@ const Cart = () => {
           <Link to="/products">
             <Button label="Start Shopping" />
           </Link>
+        </section>
+        <section className="padding bg-black padding-x padding-t pb-8">
+          <Footer />
         </section>
       </>
     );
@@ -92,10 +97,24 @@ const Cart = () => {
             Total:{" "}
             <span className="text-coral-red">${cartTotal.toFixed(2)}</span>
           </p>
-          <Link to="/checkout" className="w-full sm:w-auto">
-            <Button label="Proceed to Checkout" fullWidth />
-          </Link>
+          <div className="flex justify-between items-center mt-12 border-t pt-8 flex-wrap gap-4">
+            <Link to="/products">
+              <Button
+                label="Continue Shopping"
+                backgroundColor="bg-white"
+                textColor="text-coral-red"
+                borderColor="border-coral-red"
+              />
+            </Link>
+
+            <Link to="/checkout">
+              <Button label="Proceed to Checkout" />
+            </Link>
+          </div>
         </div>
+      </section>
+      <section className="padding bg-black padding-x padding-t pb-8">
+        <Footer />
       </section>
     </>
   );

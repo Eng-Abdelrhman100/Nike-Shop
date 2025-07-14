@@ -68,6 +68,12 @@ const ProductDetails = () => {
           <p className="text-3xl text-coral-red font-bold mt-6">
             {product.price}
           </p>
+          <div className="mt-4 flex items-center gap-2">
+            <img src="/star.svg" alt="rating" className="w-5 h-5" />
+            <span className="text-lg font-montserrat text-slate-gray">
+              {product.rating} / 5
+            </span>
+          </div>
 
           <button
             className="mt-8 bg-coral-red text-white px-6 py-3 rounded-full font-montserrat hover:bg-red-500 transition"

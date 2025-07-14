@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import { toast } from "react-hot-toast";
 
-const PopularProductCard = ({ id, imgURL, name, price, showAddToCart = false }) => {
+const PopularProductCard = ({ id, imgURL, name, price, rating, showAddToCart = false }) => {
   const { addItem } = useCart();
 
   return (
@@ -29,7 +29,7 @@ const PopularProductCard = ({ id, imgURL, name, price, showAddToCart = false }) 
       <div className="mt-8 flex justify-start gap-2.5">
         <img src={star} alt="rating" width={24} height={24} />
         <p className="font-montserrat text-xl leading-normal text-slate-gray">
-          (4.5)
+          ({rating})
         </p>
       </div>
 
