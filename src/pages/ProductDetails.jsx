@@ -5,6 +5,7 @@ import Nav from "../components/Nav";
 import { toast } from "react-hot-toast";
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "../utils/motion";
+import { star } from "../assets/icons";
 
 const ProductDetails = () => {
   const { name } = useParams();
