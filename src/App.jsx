@@ -1,5 +1,6 @@
 import {Hero , PopularProducts , SuperQuality , Services , SpecialOffer , CustomerReviews , Subscribe , Footer} from './sections';
-
+import ScrollToTop from "react-scroll-to-top";
+import { FaArrowUp } from "react-icons/fa";
 import Nav from './components/Nav';
 const App = () =>  {
 
@@ -31,7 +32,20 @@ const App = () =>  {
         <section className="padding bg-black padding-x padding-t pb-8">
           <Footer/>
         </section>
-        
+        <ScrollToTop
+        smooth
+        component={<FaArrowUp size={18} />}
+        className="!bg-coral-red !text-white !rounded-full !shadow-lg hover:!bg-red-500 !flex !items-center !justify-center"
+        style={{
+          bottom: "40px",
+          right: "30px",
+          width: "45px",
+          height: "45px",
+          zIndex: 1000,
+        }}
+        visibilityHeight={window.innerHeight / 2} 
+      />
+      
       </main>
     </>
   )
