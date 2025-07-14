@@ -11,7 +11,7 @@ const CustomerReviews = () => {
         variants={fadeIn('up', 'tween', 0.6, 1)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false , amount: 0.25}}
+        viewport={{ once: true , amount: 0.25}}
       >
         What Our <span className="text-coral-red">Customers</span> Say?
       </motion.h3>
@@ -20,7 +20,7 @@ const CustomerReviews = () => {
         variants={fadeIn('up', 'tween', 0.8, 1)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false , amount: 0.25}}
+        viewport={{ once: true , amount: 0.25}}
       >
         Hear genuine stories from our satisfied customers about their exceptional experiences with us.
       </motion.p>
@@ -29,7 +29,7 @@ const CustomerReviews = () => {
         variants={staggerContainer(0.2, 0.2)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false , amount: 0.25}}
+        viewport={{ once: true , amount: 0.25}}
       >
         {reviews.map((review, index) => (
           <motion.div 

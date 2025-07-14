@@ -1,0 +1,757 @@
+import {Hero , PopularProducts , SuperQuality , Services , SpecialOffer , CustomerReviews , Subscribe , Footer} from './sections';
+
+import Nav from './components/Nav';
+const App = () =>  {
+
+  return (
+    <main className="relative overflow-x-hidden">
+      <Nav/>
+      <section className="xl:padding-l wide:padding-r padding-b">
+        <Hero/>
+      </section>
+      <section className="padding">
+        <PopularProducts/>
+      </section>
+      <section className="padding">
+        <SuperQuality/>
+      </section>
+      <section className="padding-x py-10">
+        <Services/>
+      </section>
+      <section className="padding">
+        <SpecialOffer/>
+      </section>
+      <section className="padding bg-pale-blue">
+        <CustomerReviews/>
+      </section>
+      <section className="padding-x sm:py-32 py-16 w-full">
+        <Subscribe/>
+      </section>
+      <section className="padding bg-black padding-x padding-t pb-8">
+        <Footer/>
+      </section>
+      
+    </main>
+  )
+}
+
+export default App
+
+
+
+
+import {headerLogo} from "../assets/images"; 
+import {navLinks} from "../constants";
+import { IoMdClose } from "react-icons/io";
+import { FaBars } from 'react-icons/fa'; 
+import { useState } from "react";
+import { Link as ScrollLink } from "react-scroll"; 
+import { motion, AnimatePresence } from "framer-motion";
+import {navVariants} from "../utils/motion";
+import {slideIn} from "../utils/motion";
+
+const Nav = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    
+  return (
+    <motion.header 
+        className="padding-x py-8 absolute z-50 w-full"
+        variants={navVariants}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{once: false, amount: 0.25}}
+    >
+        <nav className="flex justify-between items-center max-container">
+            <ScrollLink to="/" smooth={true} duration={500}>
+                <img src={headerLogo} alt="Logo" width={130} height={29}/>
+            </ScrollLink>
+            <ul className="flex-1 flex justify-center items-center gap-16 max-lg:hidden">
+                {navLinks.map((link) => (
+                    <li key={link.label}>
+                        <ScrollLink to={link.href} smooth={true} duration={500}
+                        className="font-montserrat leading-normal text-lg text-slate-grey cursor-pointer hover:text-coral-red transition-colors duration-200">{link.label}</ScrollLink>
+                    </li>
+                ))}
+            </ul>
+            <p className="font-montserrat leading-3 text-xl max-lg:hidden">Signin / Signup</p>
+            <FaBars 
+                    className={`cursor-pointer block lg:hidden ${isOpen ? "hidden" : "block"} hover:text-coral-red transition-colors duration-200`} 
+                    size={30} 
+                    onClick={() => setIsOpen(true)} 
+            />
+            <AnimatePresence>
+                    {isOpen && (
+                        <motion.div 
+                            className="absolute top-0 right-0 py-8 z-100 w-[300px] bg-gradient-to-r from-white via-lightgray to-white shadow-lg rounded-l-lg"
+                            variants={slideIn('right', 'tween', 0.2, 0.5)}
+                            initial="hidden"
+                            animate="show"
+                            exit="hidden"
+                        >
+                            <div className="flex justify-between px-[2.5rem] items-center">
+                                <h1 className="text-2xl font-bold leading-3">Menu</h1>
+                                <IoMdClose 
+                                    onClick={() => setIsOpen(false)} 
+                                    className="cursor-pointer  text-4xl text-gray-700 transition-colors duration-200 hover:text-red-600"
+                                />
+                            </div>
+                            <ul className="flex flex-col justify-center items-center py-14 gap-16">
+                                {navLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <ScrollLink 
+                                            to={link.href} 
+                                            smooth={true} 
+                                            duration={500}
+                                            className="font-montserrat leading-normal text-2xl text-slate-grey hover:text-coral-red transition-colors duration-200 cursor-pointer"
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            {link.label}
+                                        </ScrollLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+        </nav>
+    </motion.header>
+  )
+}
+
+export default Nav
+
+
+
+import { arrowRight } from "../assets/icons";
+import Button from "../components/Button";
+import { shoes, statistics } from "../constants";
+import { bigShoe1 } from "../assets/images";
+import ShoeCard from "../components/ShoeCard";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { staggerContainer, slideIn, textVariant, textVariant2, fadeIn, zoomIn } from '../utils/motion';
+
+const Hero = () => {
+  const [bigShoeImg, setBigShoeImg] = useState(bigShoe1);
+
+  return (
+    <section id="home" className="w-full flex xl:flex-row flex-col justify-center min-h-screen gap-10 max-container">
+      {/* Left Side Content */}
+      <motion.div 
+        className="relative xl:w-2/5 flex flex-col justify-center items-start w-full max-xl:padding-x pt-28"
+        variants={staggerContainer(0.1, 0.2)} // Add a slight stagger effect
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }}
+      >
+        {/* Text Animations */}
+        <motion.p 
+          className="text-xl font-montserrat text-coral-red"
+          variants={fadeIn('left', 'tween', 1, 1)}
+        >
+          Our Summer Collection
+        </motion.p>
+        
+        <motion.h1 
+          className="mt-10 font-palanquin text-8xl max-sm:text-[72px] max-sm:leading-[82px] font-bold"
+          variants={textVariant(2.4)}
+        >
+          <span className="xl:bg-white xl:whitespace-nowrap relative lg:z-10 z-0 pr-10">
+            The New Arrival
+          </span>
+          <br />
+          <span className="text-coral-red inline-block mt-3">Nike</span> Shoes
+        </motion.h1>
+        
+        <motion.p 
+          className="font-montserrat text-slate-gray text-lg leading-8 mt-6 mb-14 sm:max-w-sm"
+          variants={textVariant2}
+        >
+          Discover stylish Nike arrivals, quality comfort, and innovation for your active life.
+        </motion.p>
+        
+        {/* Button Animation */}
+        <motion.div variants={fadeIn('right', 'tween', 1.1, 1)}>
+          <Button label="Shop now" iconURL={arrowRight} />
+        </motion.div>
+
+        {/* Statistics Animation */}
+        <motion.div 
+          className="flex justify-start items-start flex-wrap w-full mt-16 gap-16" 
+          variants={staggerContainer(0.3, 0.4)}
+        >
+          {statistics.map((stat, index) => (
+            <motion.div key={stat.label} variants={fadeIn('up', 'tween', index * 0.5, 1.2)}>
+              <p className="text-4xl font-palanquin font-bold">{stat.value}</p>
+              <p className="leading-7 font-montserrat text-slate-gray">{stat.label}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      
+      {/* Right Side Image and Shoe Cards */}
+      <motion.div 
+        className="relative flex-1 flex justify-center items-center xl:min-h-screen max-xl:py-40 bg-primary bg-hero bg-cover bg-center"
+        variants={staggerContainer(0.1, 0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }}
+      >
+        {/* Big Shoe Image */}
+        <motion.img
+          src={bigShoeImg}
+          alt="shoe collection"
+          width={610}
+          height={500}
+          className="object-contain relative z-10"
+          variants={slideIn('right','tween',0.2, 1)} // Zoom in effect for the big shoe image
+        />
+
+        {/* Smaller Shoe Cards */}
+        <motion.div 
+          className="flex sm:gap-6 gap-4 absolute -bottom-[5%] sm:left-[10%] max-sm:px-6" 
+          variants={staggerContainer(0.2, 0.3)}
+        >
+          {shoes.map((shoe, index) => (
+            <ShoeCard
+              key={shoe.bigShoe}
+              imgURL={shoe}
+              index={index}
+              changeBigShoeImg={setBigShoeImg}
+              bigShoeImg={bigShoeImg}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+};
+
+export default Hero;
+
+
+import { motion } from "framer-motion";
+import PopularProductCard from "../components/PopularProductCard";
+import { products } from "../constants";
+import { fadeIn, staggerContainer } from "../utils/motion";
+
+const PopularProducts = () => {
+  return (
+    <motion.section 
+      id="products" 
+      className="max-container max-sm:mt-12"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.25 }}
+    >
+         <motion.div 
+        className="flex flex-col justify-start gap-5"
+        variants={fadeIn('up', 'tween', 0.2, 1)}
+      >
+        <h2 className="text-4xl font-palanquin font-bold">Our <span className="text-coral-red">Popular</span> Products</h2>
+        <p className="lg:max-w-lg mt-2 font-montserrat text-slate-gray">Experience top-notch quality and style with our sought-after selections. Discover a world of comfort, design, and value</p>
+      </motion.div>
+        
+        <div className="mt-16 grid lg:grid-cols-4 md:grid-cols-3 sm::grid-cols-2 grid-cols-1 sm:gap-4 gap-14 ">
+          {products.map((product, index) => (
+            <PopularProductCard key={product.name} {...product} />
+          ))}
+        </div>
+    </motion.section>
+  )
+}
+
+export default PopularProducts;
+
+
+
+import Button from "../components/Button";
+import { motion } from "framer-motion";
+import { fadeIn, textVariant, textVariant2, slideIn } from "../utils/motion";
+import { shoe8 } from "../assets/images";
+
+const SuperQuality = () => {
+  return (
+    <section id="about-us" className="flex justify-between items-center max-lg:flex-col gap-10 w-full max-container">
+      <motion.div 
+        className="flex flex-1 flex-col"
+        variants={fadeIn('left', 'tween', 0.2, 1)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+      >
+        <motion.h2 
+          className="font-palanquin text-4xl font-bold capitalize lg:max-w-lg" 
+          variants={textVariant(0.2)}
+        >
+          We Provide you <span className="text-coral-red inline-block mt-3">Super</span> 
+          <span className="text-coral-red inline-block mt-3">Quality</span> Shoes
+        </motion.h2>
+        
+        <motion.p 
+          className="mt-4 lg:max-w-lg info-text"
+          variants={textVariant2}
+        >
+          Ensuring premium comfort and
+          style, our meticulously crafted
+          footwear is designed to elevate
+          your experience, providing you
+          with unmatched quality,
+          innovation, and a touch of
+          elegance.
+        </motion.p>
+
+        <motion.p 
+          className="mt-6 lg:max-w-lg info-text"
+          variants={fadeIn('up', 'tween', 0.4, 1)}
+        >
+          Our dedication to detail and excellence ensures your satisfaction
+        </motion.p>
+        
+        {/* Button Animation */}
+        <motion.div 
+          className="mt-11"
+          variants={fadeIn('right', 'tween', 0.6, 1)}
+          initial="hidden"
+          whileInView="show"
+          
+        >
+          <Button label="View details"  />
+        </motion.div>
+      </motion.div>
+
+      <motion.div className="flex-1 flex justify-center items-center"
+        variants={slideIn('right','150', 'tween', 0.3, 1)}
+      >
+        <img src={shoe8} alt="shoe8" width={570} height={522} className="object-contain" />
+      </motion.div>
+    </section>
+  );
+};
+
+export default SuperQuality;
+
+
+
+
+
+import { services } from "../constants"
+import { motion } from "framer-motion";
+import {  staggerContainer } from "../utils/motion"; // Import animation functions
+import ServiceCard from "../components/ServiceCard";
+
+const Services = () => {
+  return (
+    <motion.section 
+      className="max-container flex justify-center flex-wrap gap-9"
+      variants={staggerContainer(0.3, 0.1)} // Stagger animation for child elements
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.3 }} // Trigger animations when in view
+    >
+      {services.map((service, index) => (
+        <ServiceCard key={service.label} {...service} index={index} />
+      ))}
+    </motion.section>
+  );
+};
+
+export default Services
+
+
+
+
+
+
+
+
+import { motion } from "framer-motion"
+import { arrowRight } from "../assets/icons"
+import { offer } from "../assets/images"
+import Button from "../components/Button"
+import { fadeIn, textVariant, textVariant2 } from "../utils/motion"
+
+const SpecialOffer = () => {
+  return (
+    <section className="flex justify-wrap items-center max-xl:flex-col-reverse gap-10 max-container">
+      <div className="flex-1 ">
+        <img src={offer}  width={773} height={687} className="object-contain w-full"/>
+      </div>
+      <motion.div 
+        className="flex flex-1 flex-col"
+        variants={fadeIn('left', 'tween', 0.2, 1)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+      >
+        <motion.h2 
+          className="font-palanquin text-4xl font-bold capitalize lg:max-w-lg" 
+          variants={textVariant(0.2)}
+        >
+          <span className="text-coral-red inline-block mt-3">Special</span> Offer 
+          
+        </motion.h2>
+        
+        <motion.p 
+          className="mt-4 lg:max-w-lg info-text"
+          variants={textVariant2}
+        >
+          Embark on a shopping journey that
+          redefines your experience with
+          unbeatable deals. From premier
+          selections to incredible savings,
+          we offer unparalleled value that
+          sets us apart.
+        </motion.p>
+
+        <motion.p 
+          className="mt-6 lg:max-w-lg info-text"
+          variants={fadeIn('up', 'tween', 0.4, 1)}
+        >
+          Navigate a realm of possibilities designed to fulfill
+          your unique desires, surpassing
+          the loftiest expectations. Your
+          journey with us is nothing short
+          of exceptional.
+        </motion.p>
+        
+        {/* Button Animation */}
+        <motion.div 
+          className="mt-11 flex flex-wrap gap-4"
+          variants={fadeIn('right', 'tween', 0.6, 1)}
+        >
+          <Button label="Shop now" iconURL={arrowRight}  />
+          <Button label="Learn more" backgroundColor='bg-white' borderColor='border-slate-gray' textColor='text-slate-gray'/>
+        </motion.div>
+      </motion.div>
+    </section>
+  )
+}
+
+export default SpecialOffer
+
+
+
+
+
+
+import { motion } from "framer-motion";
+import ReviewCard from "../components/ReviewCard";
+import { reviews } from "../constants";
+import { fadeIn, staggerContainer } from "../utils/motion";
+
+const CustomerReviews = () => {
+  return (
+    <section className="max-container">
+      <motion.h3 
+        className="font-palanquin text-center text-4xl font-bold"
+        variants={fadeIn('up', 'tween', 0.6, 1)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false , amount: 0.25}}
+      >
+        What Our <span className="text-coral-red">Customers</span> Say?
+      </motion.h3>
+      <motion.p 
+        className="iinfo-text m-auto mt-4 max-w-lg text-center"
+        variants={fadeIn('up', 'tween', 0.8, 1)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false , amount: 0.25}}
+      >
+        Hear genuine stories from our satisfied customers about their exceptional experiences with us.
+      </motion.p>
+      <motion.div
+        className="mt-24 flex flex-1 justify-evenly items-center max-lg:flex-col gap-14"
+        variants={staggerContainer(0.2, 0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false , amount: 0.25}}
+      >
+        {reviews.map((review, index) => (
+          <motion.div 
+            key={review.customerName}
+            variants={fadeIn('up', 'tween', index * 0.2, 0.6)}
+          >
+            <ReviewCard 
+              imgURL={review.imgURL} 
+              customerName={review.customerName} 
+              rating={review.rating} 
+              feedback={review.feedback} 
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+    </section>
+  )
+}
+
+export default CustomerReviews
+
+
+
+
+
+
+
+
+import { motion } from "framer-motion";
+import Button from "../components/Button";
+import { fadeIn} from "../utils/motion";
+
+const Subscribe = () => {
+  return (
+    <section
+      id='contact-us'
+      className='max-container flex justify-between items-center max-lg:flex-col gap-10'
+    >
+      {/* Animated Header */}
+      <motion.h3
+        className='text-4xl leading-[68px] lg:max-w-md font-palanquin font-bold max-lg:text-center'
+        variants={fadeIn('right', 'tween', 0.2, 1)}
+        initial="hidden"
+        whileInView="show"
+      >
+        Sign Up for
+        <span className='text-coral-red'> Updates </span>& Newsletter
+      </motion.h3>
+
+      {/* Animated Form */}
+      <motion.div
+        className='lg:max-w-[40%] w-full flex items-center max-sm:flex-col gap-5 p-2.5 sm:border sm:border-slate-gray rounded-full'
+        variants={fadeIn('left', 'tween', 0.4, 1)}
+        initial="hidden"
+        whileInView="show"
+      >
+        <input type='text' placeholder='subscribe@nike.com' className='input' />
+        <div className='flex max-sm:justify-end items-center max-sm:w-full'>
+          <Button label='Sign Up' fullWidth />
+        </div>
+      </motion.div>
+    </section>
+  );
+};
+
+export default Subscribe;
+
+
+
+
+
+
+
+
+
+
+
+
+import { motion } from "framer-motion";
+import Button from "../components/Button";
+import { fadeIn} from "../utils/motion";
+
+const Subscribe = () => {
+  return (
+    <section
+      id='contact-us'
+      className='max-container flex justify-between items-center max-lg:flex-col gap-10'
+    >
+      {/* Animated Header */}
+      <motion.h3
+        className='text-4xl leading-[68px] lg:max-w-md font-palanquin font-bold max-lg:text-center'
+        variants={fadeIn('right', 'tween', 0.2, 1)}
+        initial="hidden"
+        whileInView="show"
+      >
+        Sign Up for
+        <span className='text-coral-red'> Updates </span>& Newsletter
+      </motion.h3>
+
+      {/* Animated Form */}
+      <motion.div
+        className='lg:max-w-[40%] w-full flex items-center max-sm:flex-col gap-5 p-2.5 sm:border sm:border-slate-gray rounded-full'
+        variants={fadeIn('left', 'tween', 0.4, 1)}
+        initial="hidden"
+        whileInView="show"
+      >
+        <input type='text' placeholder='subscribe@nike.com' className='input' />
+        <div className='flex max-sm:justify-end items-center max-sm:w-full'>
+          <Button label='Sign Up' fullWidth />
+        </div>
+      </motion.div>
+    </section>
+  );
+};
+
+export default Subscribe;
+
+
+
+
+
+
+
+
+
+
+
+
+const Button = ({label, iconURL , backgroundColor, textColor, borderColor, fullWidth}) => {
+  return (
+    <button className={`flex justify-center items-center gap-2 px-7 py-4 border font-montserrat text-lg leading-none rounded-full
+      ${backgroundColor ? `${backgroundColor} ${textColor} ${borderColor}` : 'bg-coral-red text-white border-coral-red'} ${fullWidth && 'w-full'}`}>
+        {label}
+        {iconURL && <img src={iconURL} alt="button" className="ml-2 rounded-full w-5 h-5 " />}
+    </button>
+  )
+}
+
+export default Button
+
+
+
+
+
+
+
+
+
+import { motion } from "framer-motion";
+import { star } from "../assets/icons";
+import { fadeIn } from "../utils/motion";
+
+const PopularProductCard = ({ imgURL, name, price }) => {
+  return (
+    <motion.div 
+      className="flex flex-1 flex-col w-full max-sm:w-full"
+      variants={fadeIn('up', 'spring', 0.7, 1)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.25 }}
+    >
+        <motion.img 
+          src={imgURL} 
+          alt={name}  
+          className="w-[280px] h-[280px]" 
+          variants={fadeIn('up', 'spring', 0.5, 1)}
+        />
+        <div className="mt-8 flex justify-start gap-2.5 ">
+            <img src={star} alt="rating"  width={24} height={24}/>
+            <p className="font-montserrat text-xl leading-normal text-slate-gray">(4.5)</p>
+        </div>
+            <h3 className="mt-2 text-2xl leading-normal font-semibold font-palanquin">{name}</h3>
+            <p className="mt-2 font-semibold font-montserrat text-coral-red text-2xl leading-normal">{price}</p>
+    </motion.div>
+  );
+}
+
+export default PopularProductCard;
+
+
+
+
+
+
+
+
+
+
+import { star } from "../assets/icons"
+
+const ReviewCard = ({imgURL, customerName, rating, feedback}) => {
+  return (
+    <div className="flex justify-center items-center flex-col">
+        <img src={imgURL} alt="customer"  className="rounded-full object-cover w-[120px] h-[120px]"/>
+         <h3 className="mt-6 font-palanquin text-3xl text-center font-bold">{customerName}</h3>
+        <p className=" max-w-sm text-center info-text">{feedback}</p>
+        <div className="mt-3 flex justify-center items-center gap-2.5">
+            <img src={star} width={24} height={24} className="object-contain m-0"/>
+            <p className="text-xl font-montserrat text-slate-gray ">({rating})</p>
+        </div>
+    </div>
+  )
+}
+
+export default ReviewCard
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { motion } from "framer-motion";
+import { fadeIn  } from "../utils/motion"; 
+
+ const ServiceCard = ({ imgURL, label, subtext, index }) => {
+    return (
+      <motion.div 
+        className="flex-1 sm:w-[350px] sm:min-w-[350px] w-full rounded-[20px] shadow-3xl px-10 py-16"
+        variants={fadeIn("up", "spring", index * 0.2, 0.75)}>
+        <div className="w-11 h-11 flex justify-center items-center bg-coral-red rounded-full">
+          <img src={imgURL} alt={label} width={24} height={24} />
+        </div>
+        <h3 className="mt-5 font-palanquin text-3xl leading-normal font-bold">
+          {label}
+        </h3>
+        <p className="mt-3 break-words font-montserrat text-lg leading-normal text-slate-gray">
+          {subtext}
+        </p>
+      </motion.div>
+    );
+  };
+
+export default ServiceCard
+
+
+
+
+
+
+
+
+import { motion } from "framer-motion";
+import { fadeIn } from "../utils/motion";
+
+const ShoeCard = ({ imgURL, changeBigShoeImg, bigShoeImg, index }) => {
+    const handleClick = () => {
+        if (bigShoeImg !== imgURL.bigShoe) {
+            changeBigShoeImg(imgURL.bigShoe);
+        }
+    };
+
+    return (
+        <motion.div
+            className={`border-2 rounded-xl ${
+                bigShoeImg === imgURL.bigShoe
+                    ? "border-coral-red"
+                    : "border-transparent"
+            } cursor-pointer max-sm:flex-1`}
+            onClick={handleClick}
+            variants={fadeIn("up", "spring", index * 0.4 + 0.5, 1)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{once: false , amount: 0.25}}
+            
+        >
+            <div className="flex justify-center items-center bg-card bg-center bg-cover sm:w-40 sm:h-40 rounded-xl max-sm:p-4">
+                <img
+                    src={imgURL.thumbnail}
+                    alt="shoe collection"
+                    width={127}
+                    height={103}
+                    className="object-contain"
+                />
+            </div>
+        </motion.div>
+    );
+};
+
+export default ShoeCard;

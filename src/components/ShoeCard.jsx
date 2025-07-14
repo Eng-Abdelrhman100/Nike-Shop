@@ -19,7 +19,7 @@ const ShoeCard = ({ imgURL, changeBigShoeImg, bigShoeImg, index }) => {
             variants={fadeIn("up", "spring", index * 0.4 + 0.5, 1)}
             initial="hidden"
             whileInView="show"
-            viewport={{once: false , amount: 0.25}}
+            viewport={{once: true , amount: 0.25}}
             
         >
             <div className="flex justify-center items-center bg-card bg-center bg-cover sm:w-40 sm:h-40 rounded-xl max-sm:p-4">
