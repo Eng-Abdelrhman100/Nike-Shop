@@ -166,9 +166,28 @@ const Products = () => {
         {/* Product Grid */}
         <div className="grid gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center place-items-center">
           {visibleProducts.length === 0 ? (
-            <p className="text-center text-xl font-montserrat text-slate-gray bg-[#fff4f3] border border-coral-red rounded-xl px-6 py-4 shadow-sm col-span-full">
-              No products match your search. Try a different keyword!
-            </p>
+            <div className="col-span-full flex flex-col items-center justify-center text-center bg-[#fff4f3] border border-coral-red rounded-2xl px-6 py-8 shadow-md transition-all duration-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-12 w-12 text-coral-red mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <p className="text-xl font-montserrat text-slate-700 font-semibold">
+                No matching products found
+              </p>
+              <p className="text-sm text-slate-gray mt-2 font-montserrat">
+                Try searching with a different keyword or check your filters.
+              </p>
+            </div>
           ) : (
             visibleProducts.map((product) => (
               <div key={product.id || product.name}>
