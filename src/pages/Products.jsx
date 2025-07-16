@@ -60,7 +60,7 @@ const Products = () => {
       <Nav />
 
       <motion.section
-        className="padding max-container"
+        className="padding max-container !pt-24"
         variants={staggerContainer(0.2, 0.1)}
         initial="hidden"
         whileInView="show"

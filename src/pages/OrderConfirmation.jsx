@@ -30,10 +30,10 @@ const OrderConfirmation = () => {
           alt="Order Confirmed"
           className="w-28 h-28 mx-auto mb-6"
         />
-        <h2 className="text-4xl font-bold font-palanquin text-coral-red mb-4">
+        <h2 className="text-2xl lg:text-4xl font-bold font-palanquin text-coral-red mb-4">
           Thank you for your order! 🎉
         </h2>
-        <p className="text-lg text-slate-gray font-montserrat">
+        <p className="lg:text-lg text-slate-gray font-montserrat">
           Your order has been placed successfully. You'll be redirected to the
           homepage shortly...
         </p>

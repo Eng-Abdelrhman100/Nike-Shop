@@ -68,7 +68,7 @@ const Checkout = () => {
     return (
       <>
         <Nav />
-        <div className="padding text-center">
+        <div className="padding text-center !pt-24">
           <h2 className="text-3xl font-bold font-palanquin mb-4">
             Your Cart is Empty 🛒
           </h2>
@@ -82,7 +82,7 @@ const Checkout = () => {
   return (
     <>
       <Nav />
-      <section className="padding max-container">
+      <section className="padding max-container !pt-24">
         <h2 className="text-4xl font-bold font-palanquin mb-10 text-center">
           Checkout
         </h2>

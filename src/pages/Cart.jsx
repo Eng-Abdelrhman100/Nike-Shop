@@ -39,7 +39,7 @@ const Cart = () => {
     <>
       <Nav />
 
-      <section className="padding max-container">
+      <section className="padding max-container !pt-24">
         <h2 className="text-4xl font-bold font-palanquin mb-10">
           Your <span className="text-coral-red">Cart</span>
         </h2>
@@ -92,12 +92,12 @@ const Cart = () => {
         </div>
 
         {/* Total Section */}
-        <div className="flex flex-col sm:flex-row justify-between items-center mt-12 border-t pt-8 gap-6">
-          <p className="text-2xl font-bold font-montserrat">
+        <div className="flex flex-col lg:flex-row justify-between items-center mt-12 border-t pt-8 lg:gap-6">
+          <p className="text-2xl font-bold font-montserrat lg:mt-14">
             Total:{" "}
             <span className="text-coral-red">${cartTotal.toFixed(2)}</span>
           </p>
-          <div className="flex justify-between items-center mt-12 border-t pt-8 flex-wrap gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center mt-12 lg:border-t    gap-4 ">
             <Link to="/products">
               <Button
                 label="Continue Shopping"
